@@ -1,4 +1,5 @@
 import Squares from "@/components/animations/SquareBG";
+import Footer from "@/components/common/footer/Footer";
 import Navbar from "@/components/common/navbar/Navbar";
 
 const PublicLayout = ({
@@ -11,6 +12,7 @@ const PublicLayout = ({
       </div>
       <Navbar />
       <div className="min-h-dvh">{children}</div>
+      <Footer />
     </div>
   );
 };
