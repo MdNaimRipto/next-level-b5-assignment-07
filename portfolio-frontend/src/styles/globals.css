@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-black: #1a1a1a;
+  --color-white: #ffffff;
+  --color-transparent: #f0e6e400;
+  --font-poppins: var(--font-poppins);
+}
+
+@layer utilities {
+  @keyframes spinY {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg); /* use full spin if you want same face */
+    }
+  }
+
+  /* Trigger on group hover */
+  .group:hover .group-hover\:animate-spinY {
+    animation: spinY 0.7s ease-in-out forwards;
+  }
+}
+
+body {
+  font-family: var(--font-poppins);
+}
