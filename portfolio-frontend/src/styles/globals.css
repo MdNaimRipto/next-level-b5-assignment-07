@@ -7,6 +7,10 @@
   --font-poppins: var(--font-poppins);
 }
 
+.shadow-inset-brown {
+  box-shadow: inset 1px 1px 5px 0px #1a1a1a95;
+}
+
 @layer utilities {
   @keyframes spinY {
     0% {

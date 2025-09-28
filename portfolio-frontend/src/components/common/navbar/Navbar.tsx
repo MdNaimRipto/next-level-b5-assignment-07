@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import NavLogo from "./NavLogo";
-import RotatingTextButton from "../buttons/RotatingTextButton";
+import RotatingTextButton from "../../buttons/RotatingTextButton";
 import NavMenuItems from "./NavMenuItems";
 import HamburgerMenu from "./HamburgerMenu";
 
@@ -31,7 +31,7 @@ const Navbar = () => {
       {/* Desktop Navbar */}
       <div className={`container mx-auto transition-colors duration-500`}>
         <div className="flex justify-between items-center px-4 md:px-10 py-4">
-          <div className="h-full flex items-center justify-start">
+          <div className="xl:w-1/3 h-full flex items-center justify-start">
             <NavLogo />
           </div>
 
@@ -39,7 +39,7 @@ const Navbar = () => {
             <NavMenuItems scrolled={scrolled} isOpen={isOpen} />
           </div>
 
-          <div className="h-full flex items-center justify-end scale-90 gap-4">
+          <div className="h-full flex items-center justify-end scale-90 gap-4 xl:w-1/3">
             <RotatingTextButton title="Let's Talk" />
             <HamburgerMenu isNavOpen={isOpen} setIsNavOpen={setOpen} />
           </div>

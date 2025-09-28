@@ -10,7 +10,7 @@ const PublicLayout = ({
         <Squares borderColor={"#00000010"} direction="diagonal" speed={0.2} />
       </div>
       <Navbar />
-      <div className="min-h-dvh mt-[80px]">{children}</div>
+      <div className="min-h-dvh">{children}</div>
     </div>
   );
 };
