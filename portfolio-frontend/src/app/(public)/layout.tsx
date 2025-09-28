@@ -6,7 +6,7 @@ const PublicLayout = ({
 }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <div className="relative">
-      <div className="fixed inset-0 z-0 w-full h-full">
+      <div className="fixed inset-0 -z-50 w-full h-full">
         <Squares borderColor={"#00000010"} direction="diagonal" speed={0.2} />
       </div>
       <Navbar />

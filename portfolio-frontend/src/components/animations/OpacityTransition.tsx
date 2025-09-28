@@ -1,11 +1,12 @@
-import React, { ReactElement } from "react";
+"use client";
+import React, { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 const OpacityTransition = ({
   children,
   delay,
 }: {
-  children: ReactElement;
+  children: ReactNode;
   delay?: number;
 }) => {
   return (
