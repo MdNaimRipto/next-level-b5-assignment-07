@@ -1,3 +1,4 @@
+import { smoothScrollToHash } from "@/utils/smoothScroll";
 import Link from "next/link";
 
 const NavMenuItems = ({
@@ -8,12 +9,11 @@ const NavMenuItems = ({
   isOpen: boolean;
 }) => {
   const navItems = [
-    { name: "Home", link: "/", opacityDelay: ".2s" },
-    { name: "About", link: "/#about", opacityDelay: ".3s" },
-    { name: "Projects", link: "/#projects", opacityDelay: ".4s" },
-    { name: "Experience", link: "/#experience", opacityDelay: ".5s" },
-    { name: "Skills", link: "/#skills", opacityDelay: ".6s" },
-    { name: "Contact", link: "/#contact", opacityDelay: ".7s" },
+    { name: "About", link: "#about", opacityDelay: ".3s" },
+    { name: "Projects", link: "#projects", opacityDelay: ".4s" },
+    { name: "Experience", link: "#experience", opacityDelay: ".5s" },
+    { name: "Skills", link: "#skills", opacityDelay: ".6s" },
+    { name: "Contact", link: "#contact", opacityDelay: ".7s" },
     { name: "Blogs", link: "/blogs", opacityDelay: ".8s" },
   ];
 
@@ -24,25 +24,28 @@ const NavMenuItems = ({
       } ${isOpen ? "left-0" : "-left-full"} duration-500`}
     >
       <div className="flex items-center justify-center xl:hidden">
-        <Link href="/" aria-label="Go to Shathi Paul - Web Developer Homepage">
-          <span className="text-4xl">{"<Naimur/>"}</span>
+        <Link href="/" aria-label="Go to homepage">
+          <span className="text-4xl cursor-pointer">{"<Naimur/>"}</span>
         </Link>
       </div>
       {navItems.map((menu, index) => (
-        <Link key={index} href={menu.link}>
-          <li
-            className={` ${
-              isOpen
-                ? `opacity-100 duration-700 mt-0`
-                : "opacity-0 xl:opacity-100 mt-3 xl:mt-0"
-            }`}
-            style={{
-              transitionDelay: isOpen ? menu.opacityDelay : "0s",
-            }}
-          >
-            {menu.name}
-          </li>
-        </Link>
+        <li
+          key={index}
+          className={`${
+            isOpen
+              ? `opacity-100 duration-700 mt-0`
+              : "opacity-0 xl:opacity-100 mt-3 xl:mt-0"
+          } cursor-pointer`}
+          style={{
+            transitionDelay: isOpen ? menu.opacityDelay : "0s",
+          }}
+          onClick={(e) => {
+            e.preventDefault(); // prevent default anchor jump
+            smoothScrollToHash(menu.link, 0, 800); // smooth scroll to top
+          }}
+        >
+          {menu.name}
+        </li>
       ))}
     </ul>
   );

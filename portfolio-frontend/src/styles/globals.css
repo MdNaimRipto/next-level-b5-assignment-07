@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* html {
+  scroll-behavior: smooth;
+} */
+
 @theme inline {
   --color-black: #1a1a1a;
   --color-white: #ffffff;
