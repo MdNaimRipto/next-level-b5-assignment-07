@@ -11,7 +11,7 @@ const GlassEffectButton = ({
 
   return (
     <button
-      className="px-5 py-[10px] rounded-xl shadow-inset-brown bg-white/80 backdrop:blur-2xl duration-700 group cursor-pointer"
+      className="px-5 py-[10px] rounded-xl shadow-inset-black bg-white/80 backdrop:blur-2xl duration-700 group cursor-pointer"
       style={style}
     >
       {splitText.map((char, i) => (

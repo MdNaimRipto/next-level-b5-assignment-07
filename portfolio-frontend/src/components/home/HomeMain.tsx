@@ -1,6 +1,8 @@
 import About from "./about/About";
 import Banner from "./banner/Banner";
+import Contact from "./contact/Contact";
 import Projects from "./projects/Projects";
+import Skills from "./skills/Skills";
 import SoftnerveRelation from "./softnerve/SoftnerveRelation";
 
 const HomeMain = () => {
@@ -10,6 +12,8 @@ const HomeMain = () => {
       <About />
       <Projects />
       <SoftnerveRelation />
+      <Skills />
+      <Contact />
     </div>
   );
 };

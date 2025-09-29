@@ -1,12 +1,10 @@
-"use client";
 import Image from "next/image";
-import React from "react";
+import React, { Fragment } from "react";
 import pr1 from "@/assets/images/projects/p1 - Copy.png";
 import pr2 from "@/assets/images/projects/p2.png";
 import pr4 from "@/assets/images/projects/p4.png";
 import pr5 from "@/assets/images/projects/p5.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import ProjectNavigation from "./ProjectNavigation";
+import DynamicSwiper from "@/components/swiper/DynamicSwiper";
 
 const Projects = () => {
   const cards = [
@@ -34,7 +32,7 @@ const Projects = () => {
 
   return (
     <div className="h-dvh flex items-center justify-center" id="projects">
-      <Swiper
+      <DynamicSwiper
         slidesPerView={1}
         breakpoints={{
           768: {
@@ -42,19 +40,10 @@ const Projects = () => {
           },
         }}
         spaceBetween={40}
-        className="projects"
-        loop={true}
-        speed={1500}
+        title="My Projects"
       >
-        <div className="flex items-center justify-between md:px-14 absolute top-0 w-full">
-          <div className="flex flex-col justify-between gap-4 md:gap-6">
-            <h6 className="text-xs md:text-base">|| Awesome Portfolio</h6>
-            <h2 className="text-2xl md:text-5xl">My Projects</h2>
-          </div>
-          <ProjectNavigation />
-        </div>
         {cards.map((card, i) => (
-          <SwiperSlide key={i} className="mt-[120px] md:mt-[160px]">
+          <Fragment key={i}>
             <div className="w-full h-[348px] lg:h-[448px] relative z-50 overflow-hidden bg-[#f1f1f1] shadow-xl hover:scale-105 duration-1000 shadow-inset-black">
               <Image
                 src={card.img}
@@ -81,9 +70,9 @@ const Projects = () => {
                 {card.stack}
               </h6>
             </div>
-          </SwiperSlide>
+          </Fragment>
         ))}
-      </Swiper>
+      </DynamicSwiper>
     </div>
   );
 };

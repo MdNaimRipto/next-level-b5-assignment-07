@@ -3,7 +3,7 @@ import React from "react";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { useSwiper } from "swiper/react";
 
-const ProjectNavigation = () => {
+const DynamicNavigation = () => {
   const swiper = useSwiper();
   return (
     <div className="flex items-center gap-2">
@@ -23,4 +23,4 @@ const ProjectNavigation = () => {
   );
 };
 
-export default ProjectNavigation;
+export default DynamicNavigation;
