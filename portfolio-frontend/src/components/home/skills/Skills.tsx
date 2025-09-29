@@ -9,7 +9,7 @@ import tailwindLogo from "@/assets/images/skills/7.svg";
 import nodeLogo from "@/assets/images/skills/8.svg";
 import mongoLogo from "@/assets/images/skills/9.svg";
 import postLogo from "@/assets/images/skills/13.svg";
-// import sqlLogo from "@/assets/images/skills/10.svg";
+import sqlLogo from "@/assets/images/skills/10.svg";
 import prismaLogo from "@/assets/images/skills/11.svg";
 import dockerLogo from "@/assets/images/skills/12.svg";
 import Image from "next/image";
@@ -67,13 +67,13 @@ const Skills = () => {
     {
       title: "Postgres",
       image: postLogo,
-      percent: 70,
+      percent: 60,
     },
-    // {
-    //   title: "SQL",
-    //   image: sqlLogo,
-    //   percent: 90,
-    // },
+    {
+      title: "SQL",
+      image: sqlLogo,
+      percent: 60,
+    },
     {
       title: "Prisma",
       image: prismaLogo,

@@ -35,7 +35,7 @@ const NavMenuItems = ({
             isOpen
               ? `opacity-100 duration-700 mt-0`
               : "opacity-0 xl:opacity-100 mt-3 xl:mt-0"
-          } cursor-pointer`}
+          } cursor-pointer focus: select-none`}
           style={{
             transitionDelay: isOpen ? menu.opacityDelay : "0s",
           }}
