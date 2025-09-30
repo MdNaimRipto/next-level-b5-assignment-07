@@ -21,7 +21,8 @@ export const smoothScrollTo = (target: number, duration = 1200) => {
 export const smoothScrollToHash = (
   hash: string,
   offset = 80,
-  duration = 1200
+  duration = 1200,
+  wrapperRef?: React.RefObject<HTMLDivElement>
 ) => {
   if (!hash.startsWith("#")) return;
 
@@ -29,8 +30,17 @@ export const smoothScrollToHash = (
   const targetEl = document.getElementById(targetId);
   if (!targetEl) return;
 
+  // Calculate scroll position relative to wrapper
+  let targetY = targetEl.getBoundingClientRect().top + window.scrollY - offset;
+
+  if (wrapperRef?.current) {
+    const wrapperTop =
+      wrapperRef.current.getBoundingClientRect().top + window.scrollY;
+    targetY -= wrapperTop;
+  }
+
   const start = window.scrollY;
-  const distance = targetEl.offsetTop - offset - start;
+  const distance = targetY - start;
   let startTime: number | null = null;
 
   const easeInOutQuad = (t: number) =>

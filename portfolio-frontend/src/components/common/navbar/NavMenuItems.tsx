@@ -1,5 +1,6 @@
 import { smoothScrollToHash } from "@/utils/smoothScroll";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const NavMenuItems = ({
   scrolled,
@@ -8,14 +9,25 @@ const NavMenuItems = ({
   scrolled: boolean;
   isOpen: boolean;
 }) => {
+  const router = useRouter();
   const navItems = [
     { name: "About", link: "#about", opacityDelay: ".3s" },
     { name: "Projects", link: "#projects", opacityDelay: ".4s" },
     { name: "Experience", link: "#experience", opacityDelay: ".5s" },
     { name: "Skills", link: "#skills", opacityDelay: ".6s" },
     { name: "Contact", link: "#contact", opacityDelay: ".7s" },
-    { name: "Blogs", link: "/blogs", opacityDelay: ".8s" },
+    // { name: "Blogs", link: "/blogs", opacityDelay: ".8s" },
   ];
+
+  const handleNavClick = (menu: { link: string }) => {
+    if (window.location.pathname === "/") {
+      // already home → smooth scroll
+      smoothScrollToHash(menu.link, 0, 800);
+    } else {
+      // not home → go home with hash
+      router.push("/" + menu.link);
+    }
+  };
 
   return (
     <ul
@@ -28,6 +40,20 @@ const NavMenuItems = ({
           <span className="text-4xl cursor-pointer">{"<Naimur/>"}</span>
         </Link>
       </div>
+      <Link href="/">
+        <li
+          className={`${
+            isOpen
+              ? `opacity-100 duration-700 mt-0`
+              : "opacity-0 xl:opacity-100 mt-3 xl:mt-0"
+          } cursor-pointer focus: select-none`}
+          style={{
+            transitionDelay: isOpen ? ".2s" : "0s",
+          }}
+        >
+          Home
+        </li>
+      </Link>
       {navItems.map((menu, index) => (
         <li
           key={index}
@@ -39,14 +65,32 @@ const NavMenuItems = ({
           style={{
             transitionDelay: isOpen ? menu.opacityDelay : "0s",
           }}
+          // onClick={(e) => {
+          //   e.preventDefault(); // prevent default anchor jump
+          //   smoothScrollToHash(menu.link, 0, 800); // smooth scroll to top
+          // }}
           onClick={(e) => {
-            e.preventDefault(); // prevent default anchor jump
-            smoothScrollToHash(menu.link, 0, 800); // smooth scroll to top
+            e.preventDefault();
+            handleNavClick(menu);
           }}
         >
           {menu.name}
         </li>
       ))}
+      <Link href="/blogs">
+        <li
+          className={`${
+            isOpen
+              ? `opacity-100 duration-700 mt-0`
+              : "opacity-0 xl:opacity-100 mt-3 xl:mt-0"
+          } cursor-pointer focus: select-none`}
+          style={{
+            transitionDelay: isOpen ? ".8s" : "0s",
+          }}
+        >
+          Blogs
+        </li>
+      </Link>
     </ul>
   );
 };

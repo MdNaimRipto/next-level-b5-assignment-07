@@ -1,37 +1,34 @@
 import { smoothScrollTo } from "@/utils/smoothScroll";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Smooth scroll function
 
 const NavLogo = () => {
-  return (
-    <>
-      {/* Desktop Logo */}
-      <Link
-        onClick={(e) => {
-          e.preventDefault(); // prevent default anchor jump
-          smoothScrollTo(0, 800); // smooth scroll to top
-        }}
-        href="/"
-        className="hidden md:block md:w-48 xl:w-60"
-        aria-label="Go to homepage"
-      >
-        <span className="text-5xl cursor-pointer">{"<Naimur/>"}</span>
-      </Link>
+  const router = useRouter();
+  const handleNavClick = () => {
+    if (window.location.pathname === "/") {
+      smoothScrollTo(0, 800);
+    } else {
+      router.push("/");
+    }
+  };
 
-      {/* Mobile Logo */}
-      <Link
-        onClick={(e) => {
-          e.preventDefault();
-          smoothScrollTo(0, 1200);
-        }}
-        href="/"
-        className="w-20 md:hidden"
-        aria-label="Go to homepage"
-      >
-        <span className="text-4xl cursor-pointer">{"<N/>"}</span>
-      </Link>
-    </>
+  return (
+    <Link
+      onClick={(e) => {
+        e.preventDefault();
+        handleNavClick();
+      }}
+      href="/"
+      className="md:w-48 xl:w-60"
+      aria-label="Go to homepage"
+    >
+      <span className="text-4xl cursor-pointer md:hidden">{"<N/>"}</span>
+      <span className="text-5xl cursor-pointer hidden md:block">
+        {"<Naimur/>"}
+      </span>
+    </Link>
   );
 };
 

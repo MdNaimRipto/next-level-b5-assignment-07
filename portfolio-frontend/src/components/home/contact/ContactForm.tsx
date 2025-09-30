@@ -1,5 +1,5 @@
 import PositionAnimation from "@/components/animations/PositionAnimation";
-import RotatingTextButton from "@/components/buttons/RotatingTextButton";
+import RotatingTextBlackButton from "@/components/buttons/RotatingTextBlackButton";
 import React from "react";
 
 const ContactForm = () => {
@@ -33,11 +33,9 @@ const ContactForm = () => {
             rows={4}
           />
         </div>
-        <RotatingTextButton
+        <RotatingTextBlackButton
           title="Send message"
           style={{
-            backgroundColor: "#1a1a1a !important",
-            color: "#fff",
             fontStyle: "italic",
           }}
         />

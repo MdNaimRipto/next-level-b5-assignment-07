@@ -2,11 +2,11 @@ import Image from "next/image";
 import myImage from "@/assets/images/about.jpg";
 import { FaLinkedinIn, FaGithub, FaFacebook } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
-import RotatingTextButton from "@/components/buttons/RotatingTextButton";
 import GlassEffectButton from "@/components/buttons/GlassEffectButton";
 import Link from "next/link";
 import PositionAnimation from "@/components/animations/PositionAnimation";
 import TypewriterAnimation from "@/components/animations/TypewriterAnimation";
+import RotatingTextBlackButton from "@/components/buttons/RotatingTextBlackButton";
 
 const About = () => {
   const socialLinks = [
@@ -73,13 +73,7 @@ const About = () => {
           className="min-h-[180px] w-full leading-7"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center mt-4 relative z-30">
-          <RotatingTextButton
-            title="Download My Resume"
-            style={{
-              backgroundColor: "#1a1a1a !important",
-              color: "#fff",
-            }}
-          />
+          <RotatingTextBlackButton title="Download My Resume" />
           <GlassEffectButton title="Get a fee" />
         </div>
       </div>

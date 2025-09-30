@@ -1,4 +1,3 @@
-import SmoothScrollWrapper from "@/components/animations/SmoothScrollWraper";
 import Squares from "@/components/animations/SquareBG";
 import Footer from "@/components/common/footer/Footer";
 import Navbar from "@/components/common/navbar/Navbar";
@@ -12,10 +11,9 @@ const PublicLayout = ({
         <Squares borderColor={"#00000010"} direction="diagonal" speed={0.2} />
       </div>
       <Navbar />
-      <SmoothScrollWrapper>
-        <div className="min-h-dvh">{children}</div>
-        <Footer />
-      </SmoothScrollWrapper>
+
+      <div className="min-h-dvh">{children}</div>
+      <Footer />
     </div>
   );
 };

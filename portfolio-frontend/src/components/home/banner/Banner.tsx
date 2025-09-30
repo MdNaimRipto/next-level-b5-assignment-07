@@ -2,7 +2,7 @@ import React from "react";
 import RotatingTitle from "./RotatingTitle";
 import OpacityTransition from "@/components/animations/OpacityTransition";
 import GlassEffectButton from "@/components/buttons/GlassEffectButton";
-import RotatingTextButton from "@/components/buttons/RotatingTextButton";
+import RotatingTextBlackButton from "@/components/buttons/RotatingTextBlackButton";
 
 const Banner = () => {
   return (
@@ -38,13 +38,7 @@ const Banner = () => {
               title="Learn More About Me"
               // onClick={() => scrollToAbout()}
             />
-            <RotatingTextButton
-              title="Download My Resume"
-              style={{
-                backgroundColor: "#1a1a1a !important",
-                color: "#fff",
-              }}
-            />
+            <RotatingTextBlackButton title="Download My Resume" />
           </div>
         </OpacityTransition>
       </div>
