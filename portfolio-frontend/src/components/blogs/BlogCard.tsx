@@ -53,7 +53,7 @@ const BlogCard = ({ blog }: { blog: IBlog }) => {
         <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-200">
           <p className="text-xs text-gray-500">✍️ MD Naimur Rahman</p>
           <Link
-            href={`/blogs/${blog.slug}`}
+            href={`/blogs/${blog.id}`}
             className="text-sm font-medium text-primary hover:underline"
           >
             Read More →

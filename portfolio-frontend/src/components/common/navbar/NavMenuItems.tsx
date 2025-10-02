@@ -1,4 +1,4 @@
-import { smoothScrollToHash } from "@/utils/smoothScroll";
+import { smoothScrollTo, smoothScrollToHash } from "@/utils/smoothScroll";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -40,7 +40,16 @@ const NavMenuItems = ({
           <span className="text-4xl cursor-pointer">{"<Naimur/>"}</span>
         </Link>
       </div>
-      <Link href="/">
+      <Link
+        href="/"
+        onClick={() => {
+          if (window.location.pathname === "/") {
+            smoothScrollTo(0, 800);
+          } else {
+            router.push("/");
+          }
+        }}
+      >
         <li
           className={`${
             isOpen
