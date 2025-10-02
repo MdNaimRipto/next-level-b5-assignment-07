@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { blogs } from "@/components/blogs/BlogsMain";
-import { AddBlogModal } from "@/components/dashboard/AddBlogModal";
-import { EditBlogModal } from "@/components/dashboard/EditBlogModal";
+import { AddBlogModal } from "@/components/dashboard/blogs/AddBlogModal";
+import { EditBlogModal } from "@/components/dashboard/blogs/EditBlogModal";
+import TopHeader from "@/components/dashboard/TopHeader";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface IBlog {
@@ -16,7 +18,7 @@ interface IBlog {
   slug: string;
 }
 
-const Dashboard = () => {
+const DashboardBlogs = () => {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editBlog] = useState<any>(null);
@@ -32,15 +34,16 @@ const Dashboard = () => {
   return (
     <div className="container mx-auto px-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <button
-          onClick={() => setIsAddOpen(true)}
-          className="bg-black text-white px-4 py-2 rounded-lg hover:bg-black/90"
-        >
-          Add Blog
-        </button>
-      </div>
+      <TopHeader
+        addButton={
+          <button
+            onClick={() => setIsAddOpen(true)}
+            className="bg-black text-white px-4 py-2 rounded-lg hover:bg-black/90 hover:cursor-pointer"
+          >
+            Add Project
+          </button>
+        }
+      />
 
       {/* Blog Table */}
       <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
@@ -57,10 +60,10 @@ const Dashboard = () => {
                 Title
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Category
+                Stack
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
-                Date
+                Links
               </th>
               <th className="px-6 py-3 text-right text-sm font-medium text-gray-600">
                 Actions
@@ -91,7 +94,12 @@ const Dashboard = () => {
                 <td className="px-6 py-3 text-sm text-gray-700">
                   {blog.category}
                 </td>
-                <td className="px-6 py-3 text-sm text-gray-700">{blog.date}</td>
+                <td className="px-6 py-3 text-sm text-gray-700">
+                  <div className="flex items-center gap-3 h-full underline text-black font-medium">
+                    <Link href="">Live Link</Link>{" "}
+                    <Link href="">Repo Link</Link>
+                  </div>
+                </td>
                 <td className="px-6 py-3 text-sm text-right">
                   <div className="flex justify-end gap-2">
                     <button
@@ -127,4 +135,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardBlogs;
