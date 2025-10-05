@@ -6,7 +6,6 @@ import GlassEffectButton from "@/components/buttons/GlassEffectButton";
 import Link from "next/link";
 import PositionAnimation from "@/components/animations/PositionAnimation";
 import TypewriterAnimation from "@/components/animations/TypewriterAnimation";
-import RotatingTextBlackButton from "@/components/buttons/RotatingTextBlackButton";
 import ViewProjectsLink from "./LearnMoreLink";
 
 const About = () => {
@@ -75,12 +74,14 @@ const About = () => {
         />
         <div className="flex flex-col md:flex-row gap-6 items-center justify-center lg:justify-start mt-4 relative z-30">
           <ViewProjectsLink />
-          <GlassEffectButton
-            title="Get a fee"
-            style={{
-              width: "220px",
-            }}
-          />
+          <Link href="#contact">
+            <GlassEffectButton
+              title="Contact With Me"
+              style={{
+                width: "220px",
+              }}
+            />
+          </Link>
         </div>
       </div>
     </div>
