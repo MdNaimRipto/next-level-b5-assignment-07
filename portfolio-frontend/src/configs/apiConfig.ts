@@ -1,5 +1,5 @@
 export const apiConfig = {
-  baseUrl: "http://localhost:5000/v1.0.0/apis",
+  baseUrl: "https://portfolio-backend-omega-sage.vercel.app/v1.0.0/apis",
   admin: {
     login: "/admin/login",
     me: "/admin/me",
