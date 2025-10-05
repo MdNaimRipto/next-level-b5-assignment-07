@@ -14,7 +14,7 @@ const BlogCard = ({ blog }: { blog: IBlogs }) => {
           width={400}
           height={400}
           priority
-          className="w-full h-full object-cover hover:scale-110 transition-transform duration- object-top-left"
+          className="w-full h-full object-cover hover:scale-110 transition-transform duration- object-top"
         />
       </div>
 

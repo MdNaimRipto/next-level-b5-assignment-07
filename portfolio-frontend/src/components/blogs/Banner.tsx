@@ -16,7 +16,7 @@ const BlogBanner = () => {
       </OpacityTransition>
       <OpacityTransition delay={0.4}>
         <p
-          className={`text-primary text-center w-[96%] md:w-[680px] text-xs leading-[14.4px] md:text-xl md:leading-[34px] text-white`}
+          className={`text-primary text-center w-[90%] md:w-[680px] mx-auto text-xs leading-[14.4px] md:text-xl md:leading-[34px] text-white`}
         >
           {`Sharing insights on web development, design, and technology — learn, build, and grow with me.`}
         </p>

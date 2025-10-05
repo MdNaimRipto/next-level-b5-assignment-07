@@ -24,7 +24,7 @@ const TopHeader = ({ addButton }: { addButton: ReactElement }) => {
   ];
 
   return (
-    <div className="flex items-center justify-between mb-6">
+    <div className="flex flex-col md:flex-row gap-6 items-center justify-between mb-6">
       <div className="flex items-center gap-3">
         {paths.map((path, i) => (
           <Link
