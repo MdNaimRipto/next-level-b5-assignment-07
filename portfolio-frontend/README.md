@@ -1,38 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Name:
 
-## Getting Started
+- MD Naimur Rahman Portfolio
 
-First, run the development server:
+# Github:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- https://github.com/MdNaimRipto/next-level-b5-assignment-07
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Live link:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- https://rahman-naimur.vercel.app
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Project pattern:
 
-## Learn More
+- MVC Pattern
 
-To learn more about Next.js, take a look at the following resources:
+# Technologies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Framer motion
 
-## Deploy on Vercel
+- Tailwind.CSS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Project Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# next-level-b5-assignment-07
-# next-level-b5-assignment-07
+1. Can login and manage blogs and projects from dashboard as a sole admin
+
+2. Can find and contact with me with the given info
+
+# How to run:
+
+1. Clone the project from: https://github.com/MdNaimRipto/next-level-b5-assignment-07
+
+2. Redirect to portfolio-frontend
+
+3. Run: npm i / npm install
+
+4. Add a .env file at root and add the values mentioned to the .env.example
+
+5. Run: npm run dev / npm start to start the project.
+
+6. Start Backend if needed.
