@@ -52,7 +52,7 @@ const jwtVerify = (token: string, secret: Secret): IJwtPayload => {
 };
 
 const verifyAuthToken = (req: Request) => {
-  const token = req.cookies.accessToken;
+  const token = req.headers.authorization;
 
   // Check if the Authorization header is present
   if (!token) {

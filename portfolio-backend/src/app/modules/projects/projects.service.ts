@@ -13,7 +13,7 @@ const uploadProject = async (payload: IProjects, token: string) => {
 };
 
 const getAllProjects = async () => {
-  const result = await Projects.find();
+  const result = await Projects.find().sort({ createdAt: -1 });
   return result;
 };
 

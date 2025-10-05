@@ -16,7 +16,7 @@ exports.checkAuth = void 0;
 const ApiError_1 = __importDefault(require("../errors/ApiError"));
 const jwt_utils_1 = require("../util/jwt/jwt.utils");
 const config_1 = require("../config/config");
-const users_schema_1 = require("../app/modules/users/users.schema");
+const admin_schema_1 = require("../app/modules/admin/admin.schema");
 const http_status_1 = __importDefault(require("http-status"));
 const checkAuth = (...authRoles) => (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -25,7 +25,7 @@ const checkAuth = (...authRoles) => (req, res, next) => __awaiter(void 0, void 0
             throw new ApiError_1.default(403, "No Token Received");
         }
         const { email, role } = jwt_utils_1.jwtHelpers.jwtVerify(accessToken.split(" ")[1], config_1.envConfig.jwt_access_secret);
-        const isUserExist = yield users_schema_1.Users.findOne({ email: email });
+        const isUserExist = yield admin_schema_1.Users.findOne({ email: email });
         if (!isUserExist) {
             throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, "User does not exist");
         }

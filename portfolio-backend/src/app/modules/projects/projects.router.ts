@@ -13,8 +13,8 @@ router.post(
 
 router.get("/getAll", ProjectsController.getAllProjects);
 
-router.get("/update/:id", ProjectsController.updateProject);
+router.patch("/update/:id", ProjectsController.updateProject);
 
-router.get("/delete/:id", ProjectsController.deleteProject);
+router.delete("/delete/:id", ProjectsController.deleteProject);
 
 export const ProjectsRouter = router;

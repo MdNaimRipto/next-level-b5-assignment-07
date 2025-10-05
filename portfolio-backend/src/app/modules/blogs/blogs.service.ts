@@ -12,7 +12,7 @@ const uploadBlog = async (payload: IBlogs, token: string) => {
 };
 
 const getAllBlogs = async () => {
-  const result = await Blogs.find();
+  const result = await Blogs.find().sort({ createdAt: -1 });
   return result;
 };
 

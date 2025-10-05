@@ -42,7 +42,7 @@ const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const http_status_1 = __importDefault(require("http-status"));
 const createToken = (payload, secret, expireTime) => {
     return (0, jsonwebtoken_1.sign)(payload, secret, {
-        expiresIn: expireTime,
+        expiresIn: 3600000,
     });
 };
 const setAuthCookie = (res, tokenInfo) => {
@@ -50,7 +50,7 @@ const setAuthCookie = (res, tokenInfo) => {
         res.cookie("accessToken", tokenInfo.accessToken, {
             httpOnly: true,
             secure: true,
-            maxAge: 86400000,
+            maxAge: 3600000,
             sameSite: "none",
         });
     }
@@ -58,7 +58,7 @@ const setAuthCookie = (res, tokenInfo) => {
         res.cookie("refreshToken", tokenInfo.refreshToken, {
             httpOnly: true,
             secure: true,
-            maxAge: 604800000,
+            maxAge: 3600000,
             sameSite: "none",
         });
     }
@@ -68,7 +68,7 @@ const jwtVerify = (token, secret) => {
     return jsonwebtoken_1.default.verify(token, secret);
 };
 const verifyAuthToken = (req) => {
-    const token = req.cookies.accessToken;
+    const token = req.headers.authorization;
     // Check if the Authorization header is present
     if (!token) {
         throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, "Authorization Token is Missing");

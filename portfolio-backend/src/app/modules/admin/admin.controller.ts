@@ -25,13 +25,13 @@ const userLogin = catchAsync(async (req: Request, res: Response) => {
 
   const result = await AdminService.userLogin(authCredentials);
 
-  setAuthCookie(res, result);
+  // setAuthCookie(res, result);
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
     message: "Login Successful",
-    data: null,
+    data: result,
   });
 });
 

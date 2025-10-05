@@ -3,6 +3,8 @@ import RotatingTitle from "./RotatingTitle";
 import OpacityTransition from "@/components/animations/OpacityTransition";
 import GlassEffectButton from "@/components/buttons/GlassEffectButton";
 import RotatingTextBlackButton from "@/components/buttons/RotatingTextBlackButton";
+import Link from "next/link";
+import LearnMoreLink from "./LearnMoreLink";
 
 const Banner = () => {
   return (
@@ -36,10 +38,7 @@ const Banner = () => {
         </OpacityTransition>
         <OpacityTransition delay={1}>
           <div className="flex flex-col md:flex-row items-center gap-4 scale-90 md:scale-100">
-            <GlassEffectButton
-              title="Learn More About Me"
-              // onClick={() => scrollToAbout()}
-            />
+            <LearnMoreLink />
             <RotatingTextBlackButton title="Download My Resume" />
           </div>
         </OpacityTransition>

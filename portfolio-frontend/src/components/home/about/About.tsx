@@ -7,6 +7,7 @@ import Link from "next/link";
 import PositionAnimation from "@/components/animations/PositionAnimation";
 import TypewriterAnimation from "@/components/animations/TypewriterAnimation";
 import RotatingTextBlackButton from "@/components/buttons/RotatingTextBlackButton";
+import ViewProjectsLink from "./LearnMoreLink";
 
 const About = () => {
   const socialLinks = [
@@ -73,7 +74,7 @@ const About = () => {
           className="min-h-[180px] w-full leading-7"
         />
         <div className="flex flex-col md:flex-row gap-6 items-center justify-center lg:justify-start mt-4 relative z-30">
-          <RotatingTextBlackButton title="Download My Resume" />
+          <ViewProjectsLink />
           <GlassEffectButton
             title="Get a fee"
             style={{

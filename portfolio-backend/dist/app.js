@@ -38,7 +38,7 @@ app.use((0, cors_1.default)({
 // * Basic Page
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(http_status_1.default.OK).send({
-        message: "Assignment 05 Server Running Successfully",
+        message: "Portfolio Backend Server Running Successfully",
         statusCode: http_status_1.default.OK,
     });
 }));
