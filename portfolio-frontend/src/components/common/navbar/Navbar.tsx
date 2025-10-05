@@ -6,8 +6,11 @@ import NavMenuItems from "./NavMenuItems";
 import HamburgerMenu from "./HamburgerMenu";
 import Link from "next/link";
 import RotatingTextBlackButton from "@/components/buttons/RotatingTextBlackButton";
+import { useUserContext } from "@/context/AuthContext";
 
 const Navbar = () => {
+  const { user } = useUserContext();
+
   const [isOpen, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -42,9 +45,15 @@ const Navbar = () => {
           </div>
 
           <div className="h-full flex items-center justify-end scale-90 gap-4 xl:w-1/3">
-            <Link href="/login">
-              <RotatingTextBlackButton title="Login" />
-            </Link>
+            {!user ? (
+              <Link href="/login">
+                <RotatingTextBlackButton title="Login" />
+              </Link>
+            ) : (
+              <Link href="/dashboard/blogs">
+                <RotatingTextBlackButton title="Dashboard" />
+              </Link>
+            )}
             <div className="hidden md:block">
               <RotatingTextButton title="Let's Talk" />
             </div>
