@@ -1,35 +1,30 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { blogs } from "@/components/blogs/BlogsMain";
-import { AddBlogModal } from "@/components/dashboard/blogs/AddBlogModal";
-import { EditBlogModal } from "@/components/dashboard/blogs/EditBlogModal";
+import { deleteProject, getAllProjects } from "@/actions/projects";
+import { AddProjectModal } from "@/components/dashboard/projects/AddProjectModal";
+import { EditProjectModal } from "@/components/dashboard/projects/EditProjectModal";
 import TopHeader from "@/components/dashboard/TopHeader";
+import { IProjects } from "@/types/projects";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
-interface IBlog {
-  id: number;
-  title: string;
-  excerpt: string;
-  image: string;
-  date: string;
-  category: string;
-  slug: string;
-}
-
-const DashboardBlogs = () => {
+const DashboardProjects = () => {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [editBlog] = useState<any>(null);
+  const [editProject, setEditProject] = useState<IProjects | null>(null);
 
-  const handleAddBlog = (data: any) => {
-    console.log("New Blog:", data);
-  };
+  const [projects, setProjects] = useState<IProjects[] | []>([]);
+  useEffect(() => {
+    const getProjects = async () => {
+      const res = await getAllProjects();
+      setProjects(res.data);
+    };
 
-  const handleUpdateBlog = (data: any) => {
-    console.log("Updated Blog:", data);
-  };
+    getProjects();
+  }, []);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className="container mx-auto px-4">
@@ -45,7 +40,7 @@ const DashboardBlogs = () => {
         }
       />
 
-      {/* Blog Table */}
+      {/* Project Table */}
       <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
         <table className="min-w-full border-collapse">
           <thead className="bg-gray-100">
@@ -71,45 +66,67 @@ const DashboardBlogs = () => {
             </tr>
           </thead>
           <tbody>
-            {blogs.map((blog: IBlog, index) => (
+            {projects.map((project, index) => (
               <tr
-                key={blog.id}
+                key={project._id}
                 className="border-t hover:bg-gray-50 transition-colors"
               >
                 <td className="px-6 py-3 text-sm text-gray-700">{index + 1}</td>
                 <td className="px-6 py-3">
                   <div className="w-[60px] h-[60px] overflow-hidden">
                     <Image
-                      src={blog.image}
-                      alt="blog image"
+                      src={project.thumbnail}
+                      alt="Project image"
                       className="w-full h-full rounded-xl object-cover"
                       width={200}
                       height={200}
+                      priority
                     />
                   </div>
                 </td>
                 <td className="px-6 py-3 text-sm font-medium text-gray-900">
-                  {blog.title}
+                  {project.title}
                 </td>
                 <td className="px-6 py-3 text-sm text-gray-700">
-                  {blog.category}
+                  {project.stack}
                 </td>
                 <td className="px-6 py-3 text-sm text-gray-700">
                   <div className="flex items-center gap-3 h-full underline text-black font-medium">
-                    <Link href="">Live Link</Link>{" "}
-                    <Link href="">Repo Link</Link>
+                    <Link href={project.liveLink}>Live Link</Link>{" "}
+                    <Link href={project.repoLink}>Repo Link</Link>
                   </div>
                 </td>
                 <td className="px-6 py-3 text-sm text-right">
                   <div className="flex justify-end gap-2">
                     <button
-                      onClick={() => setIsEditOpen(true)}
+                      onClick={() => {
+                        setIsEditOpen(true);
+                        setEditProject(project);
+                      }}
                       className="px-3 py-1 rounded-md bg-black text-white text-sm hover:cursor-pointer"
                     >
                       Edit
                     </button>
-                    <button className="px-3 py-1 rounded-md bg-red-500 text-white text-sm hover:bg-red-600 hover:cursor-pointer">
-                      Delete
+                    <button
+                      disabled={isLoading ? true : false}
+                      onClick={async () => {
+                        try {
+                          setIsLoading(true);
+                          const res = await deleteProject({
+                            projectId: String(project._id),
+                          });
+                          if (res.success) {
+                            toast.success(res.message);
+                          }
+                        } catch (error) {
+                          console.log(error);
+                        } finally {
+                          setIsLoading(false);
+                        }
+                      }}
+                      className="px-3 py-1 rounded-md bg-red-500 text-white text-sm hover:bg-red-600 hover:cursor-pointer"
+                    >
+                      {isLoading ? "Deleting..." : "Delete"}
                     </button>
                   </div>
                 </td>
@@ -120,19 +137,14 @@ const DashboardBlogs = () => {
       </div>
 
       {/* Modals */}
-      <AddBlogModal
-        isOpen={isAddOpen}
-        onClose={() => setIsAddOpen(false)}
-        onSubmitBlog={handleAddBlog}
-      />
-      <EditBlogModal
+      <AddProjectModal isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} />
+      <EditProjectModal
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
-        blog={editBlog}
-        onUpdateBlog={handleUpdateBlog}
+        project={editProject}
       />
     </div>
   );
 };
 
-export default DashboardBlogs;
+export default DashboardProjects;

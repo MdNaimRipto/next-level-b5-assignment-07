@@ -4,23 +4,22 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Modal } from "../../modals/ModalWrapper";
 import { useState } from "react";
-import TextEditor from "./TextEditor";
 import ImageUpload from "@/components/ImageUpload";
-import { uploadBlog } from "@/actions/blogs";
-import { IBlogs } from "@/types/blogs";
 import { toast } from "sonner";
+import { IProjects } from "@/types/projects";
+import { uploadProject } from "@/actions/projects";
 
-const blogSchema = z.object({
+const projectSchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
-  subTitle: z.string().min(10, "Excerpt must be at least 10 characters"),
-  tag: z.string().min(2, "Category is required"),
-  description: z.string(),
+  stack: z.string().min(10, "Excerpt must be at least 10 characters"),
+  liveLink: z.string().min(2, "Category is required"),
+  repoLink: z.string(),
   thumbnail: z.string(),
 });
 
-type BlogFormData = z.infer<typeof blogSchema>;
+type projectFormData = z.infer<typeof projectSchema>;
 
-export const AddBlogModal = ({
+export const AddProjectModal = ({
   isOpen,
   onClose,
 }: {
@@ -28,24 +27,23 @@ export const AddBlogModal = ({
   onClose: () => void;
 }) => {
   const [image, setImage] = useState("");
-  const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<BlogFormData>({
-    resolver: zodResolver(blogSchema),
+  const form = useForm<projectFormData>({
+    resolver: zodResolver(projectSchema),
     defaultValues: {
       title: "",
-      subTitle: "",
-      tag: "",
-      description: "",
+      stack: "",
+      liveLink: "",
+      repoLink: "",
       thumbnail: "",
     },
   });
 
-  const handleAddBlog = async (data: BlogFormData) => {
+  const handleAddBlog = async (data: projectFormData) => {
     try {
       setIsLoading(true);
-      const res = await uploadBlog({ payload: data as IBlogs });
+      const res = await uploadProject({ payload: data as IProjects });
       if (res.success) {
         form.reset();
         onClose();
@@ -58,14 +56,14 @@ export const AddBlogModal = ({
     }
   };
 
-  const handleSubmit = (data: BlogFormData) => {
-    handleAddBlog({ ...data, description: content, thumbnail: image });
+  const handleSubmit = (data: projectFormData) => {
+    handleAddBlog({ ...data, thumbnail: image });
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="max-h-[600px] overflow-y-auto p-4">
-        <h2 className="text-xl font-semibold mb-4">Add New Blog</h2>
+        <h2 className="text-xl font-semibold mb-4">Upload Project</h2>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
           className="flex flex-col gap-4"
@@ -86,31 +84,42 @@ export const AddBlogModal = ({
 
           <input
             type="text"
-            placeholder="Sub Title"
-            {...form.register("subTitle")}
+            placeholder="Stack"
+            {...form.register("stack")}
             className="border rounded-md p-2"
             required
           />
-          {form.formState.errors.subTitle && (
+          {form.formState.errors.stack && (
             <p className="text-red-500 text-sm">
-              {form.formState.errors.subTitle.message}
+              {form.formState.errors.stack.message}
             </p>
           )}
 
           <input
             type="text"
-            placeholder="Tag"
-            {...form.register("tag")}
+            placeholder="Live Link"
+            {...form.register("liveLink")}
             className="border rounded-md p-2"
             required
           />
-          {form.formState.errors.tag && (
+          {form.formState.errors.liveLink && (
             <p className="text-red-500 text-sm">
-              {form.formState.errors.tag.message}
+              {form.formState.errors.liveLink.message}
             </p>
           )}
 
-          <TextEditor setContent={setContent} content={content} />
+          <input
+            type="text"
+            placeholder="Repo Link"
+            {...form.register("repoLink")}
+            className="border rounded-md p-2"
+            required
+          />
+          {form.formState.errors.repoLink && (
+            <p className="text-red-500 text-sm">
+              {form.formState.errors.repoLink.message}
+            </p>
+          )}
 
           <button
             type="submit"

@@ -4,69 +4,66 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Modal } from "../../modals/ModalWrapper";
 import { useEffect, useState } from "react";
-import TextEditor from "./TextEditor";
-import { updateBlog } from "@/actions/blogs";
-import { IBlogs } from "@/types/blogs";
+import { IProjects } from "@/types/projects";
 import ImageUpload from "@/components/ImageUpload";
 import { toast } from "sonner";
+import { updateProject } from "@/actions/projects";
 
-const blogSchema = z.object({
+const projectSchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
-  subTitle: z.string().min(10, "Excerpt must be at least 10 characters"),
-  tag: z.string().min(2, "Category is required"),
-  description: z.string(),
+  stack: z.string().min(10, "Excerpt must be at least 10 characters"),
+  liveLink: z.string().min(2, "Category is required"),
+  repoLink: z.string(),
   thumbnail: z.string(),
 });
 
-type BlogFormData = z.infer<typeof blogSchema>;
+type projectFormData = z.infer<typeof projectSchema>;
 
-export const EditBlogModal = ({
+export const EditProjectModal = ({
   isOpen,
   onClose,
-  blog,
+  project,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  blog: IBlogs | null;
+  project: IProjects | null;
 }) => {
-  const form = useForm<BlogFormData>({
-    resolver: zodResolver(blogSchema),
+  const form = useForm<projectFormData>({
+    resolver: zodResolver(projectSchema),
     defaultValues: {
-      title: blog?.title,
-      subTitle: blog?.subTitle,
-      description: blog?.description,
-      tag: blog?.tag,
-      thumbnail: blog?.thumbnail,
+      title: project?.title,
+      stack: project?.stack,
+      liveLink: project?.liveLink,
+      repoLink: project?.repoLink,
+      thumbnail: project?.thumbnail,
     },
   });
 
-  const [image, setImage] = useState(blog?.thumbnail ? blog.thumbnail : "");
-  const [content, setContent] = useState(
-    blog?.description ? blog.description : ""
+  const [image, setImage] = useState(
+    project?.thumbnail ? project.thumbnail : ""
   );
 
   useEffect(() => {
-    if (blog) {
+    if (project) {
       form.reset({
-        title: blog.title,
-        subTitle: blog.subTitle,
-        description: blog.description,
-        tag: blog.tag,
-        thumbnail: blog.thumbnail,
+        title: project.title,
+        stack: project.stack,
+        liveLink: project.liveLink,
+        repoLink: project.repoLink,
+        thumbnail: project.thumbnail,
       });
-      setImage(blog.thumbnail || "");
-      setContent(blog.description || "");
+      setImage(project.thumbnail || "");
     }
-  }, [blog, form]);
+  }, [project, form]);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleUpdateBlog = async (data: BlogFormData) => {
+  const handleUpdateProject = async (data: projectFormData) => {
     try {
       setIsLoading(true);
-      const res = await updateBlog({
-        payload: data as IBlogs,
-        blogId: String(blog?._id),
+      const res = await updateProject({
+        payload: data as IProjects,
+        projectId: String(project?._id),
       });
       if (res.success) {
         form.reset();
@@ -80,14 +77,14 @@ export const EditBlogModal = ({
     }
   };
 
-  const handleSubmit = (data: BlogFormData) => {
-    handleUpdateBlog({ ...data, description: content, thumbnail: image });
+  const handleSubmit = (data: projectFormData) => {
+    handleUpdateProject({ ...data, thumbnail: image });
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="max-h-[600px] overflow-y-auto p-4">
-        <h2 className="text-xl font-semibold mb-4">Update Blog</h2>
+        <h2 className="text-xl font-semibold mb-4">Update Project</h2>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
           className="flex flex-col gap-4"
@@ -98,7 +95,7 @@ export const EditBlogModal = ({
             placeholder="Title"
             {...form.register("title")}
             className="border rounded-md p-2"
-            defaultValue={blog?.title || ""}
+            defaultValue={project?.title || ""}
             required
           />
           {form.formState.errors.title && (
@@ -109,31 +106,42 @@ export const EditBlogModal = ({
 
           <input
             type="text"
-            placeholder="Sub Title"
-            {...form.register("subTitle")}
+            placeholder="Stack"
+            {...form.register("stack")}
             className="border rounded-md p-2"
             required
           />
-          {form.formState.errors.subTitle && (
+          {form.formState.errors.stack && (
             <p className="text-red-500 text-sm">
-              {form.formState.errors.subTitle.message}
+              {form.formState.errors.stack.message}
             </p>
           )}
 
           <input
             type="text"
-            placeholder="Tag"
-            {...form.register("tag")}
+            placeholder="Live Link"
+            {...form.register("liveLink")}
             className="border rounded-md p-2"
             required
           />
-          {form.formState.errors.tag && (
+          {form.formState.errors.liveLink && (
             <p className="text-red-500 text-sm">
-              {form.formState.errors.tag.message}
+              {form.formState.errors.liveLink.message}
             </p>
           )}
 
-          <TextEditor setContent={setContent} content={content} />
+          <input
+            type="text"
+            placeholder="Repo Link"
+            {...form.register("repoLink")}
+            className="border rounded-md p-2"
+            required
+          />
+          {form.formState.errors.repoLink && (
+            <p className="text-red-500 text-sm">
+              {form.formState.errors.repoLink.message}
+            </p>
+          )}
 
           <button
             type="submit"

@@ -4,12 +4,14 @@ import React, { SetStateAction } from "react";
 
 const TextEditor = ({
   setContent,
+  content,
 }: {
   setContent: React.Dispatch<SetStateAction<string>>;
+  content: string;
 }) => {
   return (
     <Editor
-      apiKey="m2p4isnv09dy1d1px70vvu3ubpy2ix9gxtx1pvkh54fr4zk5"
+      apiKey={process.env.NEXT_PUBLIC_EDITOR_KEY}
       onEditorChange={(newValue) => setContent(newValue)} // ✅ Capture text
       init={{
         plugins: [
@@ -72,7 +74,7 @@ const TextEditor = ({
           ),
         uploadcare_public_key: "2edce43b41f5160146f5",
       }}
-      initialValue="Enter Description"
+      initialValue={content ? content : "Enter Description"}
     />
   );
 };

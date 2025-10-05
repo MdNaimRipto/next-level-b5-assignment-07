@@ -4,7 +4,6 @@ import { apiConfig } from "@/configs/apiConfig";
 import { FieldValues } from "react-hook-form";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
-import { redirect } from "next/navigation";
 
 export const login = async (data: FieldValues) => {
   const res = await fetch(`${apiConfig.baseUrl}${apiConfig.admin.login}`, {
@@ -22,10 +21,13 @@ export const login = async (data: FieldValues) => {
 
   if (res.ok) {
     const cookieStore = await cookies();
-    cookieStore.set("accessToken", result.data.accessToken);
-    cookieStore.set("refreshToken", result.data.refreshToken);
+    cookieStore.set("accessToken", result.data.accessToken, {
+      maxAge: 3600000,
+    });
+    cookieStore.set("refreshToken", result.data.refreshToken, {
+      maxAge: 3600000,
+    });
     revalidateTag("AUTH");
-    // redirect("/");
   }
   return result;
 };
