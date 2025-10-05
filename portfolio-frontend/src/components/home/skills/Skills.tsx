@@ -87,51 +87,20 @@ const Skills = () => {
   ];
 
   return (
-    // <div
-    //   className="min-h-dvh flex flex-col items-center justify-center my-20"
-    //   id="skills"
-    // >
-    //   <div className="flex flex-col items-center justify-center gap-4 mb-16">
-    //     <h2 className="text-6xl font-medium text-black">My Skills</h2>
-    //     <p className="text-lg text-center max-w-[600px]">
-    //       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil
-    //       tenetur sapiente voluptate eaque ipsam quidem.
-    //     </p>
-    //   </div>
-    //   <div className="grid grid-cols-6 gap-8 w-full justify-items-center items-center">
-    // {skills.map((skill, i) => (
-    //   <PositionAnimation
-    //     key={i}
-    //     position="y"
-    //     initial={60}
-    //     animate={0}
-    //     delay={i * 0.3}
-    //     className="w-full"
-    //   >
-    //     <div className="flex flex-col items-center justify-center gap-4 bg-white/80 backdrop:blur-2xl w-full h-[300px] shadow-inset-black rounded-xl">
-    //       <div className="w-[100px] h-[100px] p-3 bg-white border-2 border-black rounded-full overflow-hidden flex items-center justify-center">
-    //         <Image
-    //           src={skill.image}
-    //           alt={skill.title}
-    //           className="w-4/5 h-4/5 object-contain"
-    //         />
-    //       </div>
-    //       <h6 className="font-normal text-lg">{skill.title}</h6>
-    //       <ProgressBar delay={i * 0.3} percent={skill.percent} />
-    //       <span className="text-sm font-medium text-black">
-    //         {skill.percent}%
-    //       </span>
-    //     </div>
-    //   </PositionAnimation>
-    // ))}
-    //   </div>
-    // </div>
-
     <div className="h-[600px] flex items-center justify-center" id="skills">
       <DynamicSwiper
         slidesPerView={1}
         breakpoints={{
           768: {
+            slidesPerView: 2,
+          },
+          992: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 4,
+          },
+          1920: {
             slidesPerView: 5,
           },
         }}

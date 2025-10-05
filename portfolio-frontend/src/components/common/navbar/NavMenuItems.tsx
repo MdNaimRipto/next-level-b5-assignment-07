@@ -32,7 +32,9 @@ const NavMenuItems = ({
   return (
     <ul
       className={`flex h-dvh xl:h-[40px] xl:leading-[40px] flex-col xl:flex-row absolute xl:static w-4/5 md:w-2/5 xl:w-full top-0 pt-8 xl:pt-0 gap-8 px-8 z-50 ${
-        scrolled ? "bg-transparent" : "bg-white shadow-md rounded-xl"
+        scrolled
+          ? "bg-white xl:bg-transparent"
+          : "bg-white shadow-md rounded-xl"
       } ${isOpen ? "left-0" : "-left-full"} duration-500`}
     >
       <div className="flex items-center justify-center xl:hidden">

@@ -34,10 +34,10 @@ const About = () => {
   return (
     <div
       id="about"
-      className="grid grid-cols-1 lg:grid-cols-2 h-dvh 2xl:gap-0 items-center justify-items-center overflow-hidden"
+      className="grid grid-cols-1 lg:grid-cols-2 min-h-dvh md:gap-6 2xl:gap-0 items-center justify-items-center overflow-hidden"
     >
-      <div className="relative w-[380px] mx-auto h-[540px] rounded-xl border-2 border-black">
-        <div className="w-full h-[472px] overflow-hidden absolute top-1/2 -translate-y-1/2 left-[34px] rounded-xl">
+      <div className="relative w-full md:w-[380px] mx-auto h-[540px] rounded-xl md:border-2 border-black">
+        <div className="w-full md:h-[472px] overflow-hidden absolute top-1/2 -translate-y-1/2 left-0 md:left-[34px] rounded-xl">
           <PositionAnimation
             position="x"
             initial={-34}
@@ -72,9 +72,14 @@ const About = () => {
           speed={15}
           className="min-h-[180px] w-full leading-7"
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center mt-4 relative z-30">
+        <div className="flex flex-col md:flex-row gap-6 items-center justify-center lg:justify-start mt-4 relative z-30">
           <RotatingTextBlackButton title="Download My Resume" />
-          <GlassEffectButton title="Get a fee" />
+          <GlassEffectButton
+            title="Get a fee"
+            style={{
+              width: "220px",
+            }}
+          />
         </div>
       </div>
     </div>

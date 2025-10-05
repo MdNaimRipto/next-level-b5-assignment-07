@@ -5,9 +5,11 @@ import React from "react";
 const ContactForm = () => {
   return (
     <PositionAnimation position="x" initial={40} animate={0} delay={0.1}>
-      <form className="w-[90%] mx-auto">
+      <form className="w-full lg:w-[90%] mx-auto">
         <div className="flex flex-col gap-3 mb-6">
-          <label className="italic text-lg font-normal">Username</label>
+          <label className="italic text-base md:text-lg font-normal">
+            Username
+          </label>
           <input
             type="text"
             name="username"
@@ -16,7 +18,9 @@ const ContactForm = () => {
           />
         </div>
         <div className="flex flex-col gap-3 mb-6">
-          <label className="italic text-lg font-normal">Email</label>
+          <label className="italic text-base md:text-lg font-normal">
+            Email
+          </label>
           <input
             type="text"
             name="email"
@@ -25,7 +29,9 @@ const ContactForm = () => {
           />
         </div>
         <div className="flex flex-col gap-3 mb-6">
-          <label className="italic text-lg font-normal">Message</label>
+          <label className="italic text-base md:text-lg font-normal">
+            Message
+          </label>
           <textarea
             name="message"
             placeholder="Enter your message"

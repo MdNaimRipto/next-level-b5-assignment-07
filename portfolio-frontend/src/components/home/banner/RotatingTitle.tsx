@@ -27,7 +27,7 @@ const RotatingTitle = () => {
     <SplitText
       key={titles[index]}
       text={titles[index]}
-      className={`text-primary font-semibold ${font.className} text-[50px]`}
+      className={`text-primary font-semibold ${font.className} text-2xl md:text-[50px]`}
     />
   );
 };

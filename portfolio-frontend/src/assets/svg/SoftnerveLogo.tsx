@@ -6,7 +6,7 @@ const SoftnerveLogo = () => {
       height="65"
       viewBox="0 0 153 45"
       fill="none"
-      className="ml-8"
+      className="lg:ml-8"
     >
       <g clipPath="url(#clip0_346_358)">
         <path

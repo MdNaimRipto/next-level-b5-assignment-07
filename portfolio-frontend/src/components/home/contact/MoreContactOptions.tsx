@@ -23,14 +23,14 @@ const MoreContactOptions = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-8 items-center">
+    <div className="flex flex-col gap-3 md:gap-8 items-center mt-16 md:mt-0">
       <div className="flex flex-col gap-4">
         <PositionAnimation position="y" initial={20} animate={0} delay={0}>
-          <h4 className="text-3xl font-light">Send Email</h4>
+          <h4 className="md:text-3xl font-light">Send Email</h4>
         </PositionAnimation>
         <PositionAnimation position="y" initial={20} animate={0} delay={0.4}>
           <Link
-            className="text-black text-3xl italic"
+            className="text-black md:text-3xl italic"
             href="mailto:mdnaimurrahman681@gmail.com"
           >
             mdnaimurrahman681@gmail.com
@@ -51,7 +51,7 @@ const MoreContactOptions = () => {
             delay={link.delay}
           >
             <Link href={link.link}>
-              <link.icon className="text-4xl" />
+              <link.icon className="text-2xl md:text-4xl" />
             </Link>
           </PositionAnimation>
         ))}

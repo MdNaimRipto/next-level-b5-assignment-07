@@ -9,15 +9,15 @@ import OpacityTransition from "@/components/animations/OpacityTransition";
 const SoftnerveRelation = () => {
   return (
     <div
-      className="flex flex-col-reverse md:flex-row items-center justify-between gap-16 container md:h-dvh px-4 relative z-40"
+      className="flex flex-col-reverse lg:flex-row items-center justify-between gap-16 container md:min-h-dvh px-4 relative z-40 lg:my-16 xl:my-0"
       id="experience"
     >
-      <div className="md:w-1/2 h-full flex flex-col items-center justify-center gap-10">
+      <div className="w-full lg:w-1/2 h-full flex flex-col items-center justify-center gap-10">
         <OpacityTransition>
           <SoftnerveLogo />
         </OpacityTransition>
         <div
-          className={`text-black tracking-[0.452px] leading-8 text-xl text-right flex flex-col gap-4 font-normal`}
+          className={`text-black tracking-[0.452px] leading-8 text-sm md:text-xl text-center md:text-right flex flex-col gap-4 font-normal`}
         >
           <PositionAnimation
             position="y"
@@ -89,7 +89,7 @@ const SoftnerveRelation = () => {
         initial={20}
         animate={0}
         delay={0.1}
-        className="md:w-[45%] h-[880px] overflow-hidden rounded-3xl shadow"
+        className="w0full lg:w-[45%] h-[880px] overflow-hidden rounded-3xl shadow"
       >
         <Image
           src={banner}

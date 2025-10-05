@@ -9,10 +9,12 @@ const Banner = () => {
     <div className="relative h-screen z-40 flex items-center justify-center flex-col gap-6">
       <div className="flex flex-col items-center justify-center relative z-40 h-full">
         <OpacityTransition>
-          <h6 className={`text-black text-center text-2xl mb-4`}>Welcome</h6>
+          <h6 className={`text-black text-center text-sm md:text-2xl mb-4`}>
+            Welcome
+          </h6>
         </OpacityTransition>
         <h2
-          className={`text-center text-[40px] leading-[48px] md:text-[55px] md:leading-[70px] mb-[20px]`}
+          className={`text-center text-xl leading-[48px] md:text-[55px] md:leading-[70px] mb-[20px]`}
         >
           <OpacityTransition delay={0.2}>
             <span className={`text-primary/90 font-semibold`}>{`I'm`}</span>
@@ -33,7 +35,7 @@ const Banner = () => {
           </p>
         </OpacityTransition>
         <OpacityTransition delay={1}>
-          <div className="flex items-center gap-4 scale-75 md:scale-100">
+          <div className="flex flex-col md:flex-row items-center gap-4 scale-90 md:scale-100">
             <GlassEffectButton
               title="Learn More About Me"
               // onClick={() => scrollToAbout()}
