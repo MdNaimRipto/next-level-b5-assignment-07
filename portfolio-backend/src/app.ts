@@ -31,7 +31,7 @@ app.use(
 // * Basic Page
 app.get("/", async (req: Request, res: Response) => {
   res.status(httpStatus.OK).send({
-    message: "Assignment 05 Server Running Successfully",
+    message: "Portfolio Backend Server Running Successfully",
     statusCode: httpStatus.OK,
   });
 });

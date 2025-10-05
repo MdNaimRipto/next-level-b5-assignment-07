@@ -23,7 +23,7 @@ const createToken = (
   expireTime: string
 ): string => {
   return sign(payload, secret, {
-    expiresIn: expireTime,
+    expiresIn: 3600000,
   } as SignOptions);
 };
 
