@@ -4,6 +4,8 @@ import NavLogo from "./NavLogo";
 import RotatingTextButton from "../../buttons/RotatingTextButton";
 import NavMenuItems from "./NavMenuItems";
 import HamburgerMenu from "./HamburgerMenu";
+import Link from "next/link";
+import RotatingTextBlackButton from "@/components/buttons/RotatingTextBlackButton";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -40,7 +42,12 @@ const Navbar = () => {
           </div>
 
           <div className="h-full flex items-center justify-end scale-90 gap-4 xl:w-1/3">
-            <RotatingTextButton title="Let's Talk" />
+            <Link href="/login">
+              <RotatingTextBlackButton title="Login" />
+            </Link>
+            <div className="hidden md:block">
+              <RotatingTextButton title="Let's Talk" />
+            </div>
             <HamburgerMenu isNavOpen={isOpen} setIsNavOpen={setOpen} />
           </div>
         </div>
