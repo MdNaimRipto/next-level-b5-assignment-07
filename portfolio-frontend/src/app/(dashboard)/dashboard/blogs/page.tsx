@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { blogs } from "@/components/blogs/BlogsMain";
 import { AddBlogModal } from "@/components/dashboard/blogs/AddBlogModal";
 import { EditBlogModal } from "@/components/dashboard/blogs/EditBlogModal";
 import TopHeader from "@/components/dashboard/TopHeader";
@@ -70,7 +69,7 @@ const DashboardBlogs = () => {
             </tr>
           </thead>
           <tbody>
-            {blogs.map((blog: IBlog, index) => (
+            {/* {blogs.map((blog: IBlog, index) => (
               <tr
                 key={blog.id}
                 className="border-t hover:bg-gray-50 transition-colors"
@@ -108,7 +107,7 @@ const DashboardBlogs = () => {
                   </div>
                 </td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>

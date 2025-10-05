@@ -1,34 +1,43 @@
 import Image from "next/image";
 import React, { Fragment } from "react";
-import pr1 from "@/assets/images/projects/p1 - Copy.png";
+import pr1 from "@/assets/images/projects/p1.png";
 import pr2 from "@/assets/images/projects/p2.png";
 import pr4 from "@/assets/images/projects/p4.png";
 import pr5 from "@/assets/images/projects/p5.png";
 import DynamicSwiper from "@/components/swiper/DynamicSwiper";
+import { apiConfig } from "@/configs/apiConfig";
+import { IProjects } from "@/types/projects";
+import Link from "next/link";
 
-const Projects = () => {
-  const cards = [
-    {
-      img: pr1,
-      title: "Travel Buddy - Travel Management Application",
-      stack: "|| FullStack - TypeScript | Next.js | Node.js | Framer Motion",
-    },
-    {
-      img: pr2,
-      title: "Tech Mart - Tech E-commerce Application",
-      stack: "|| TypeScript | Next.js | Node.js | Tailwind.CSS",
-    },
-    {
-      img: pr5,
-      title: "Tech Mart - Tech E-commerce Application",
-      stack: "|| TypeScript | Next.js | Node.js | Tailwind.CSS",
-    },
-    {
-      img: pr4,
-      title: "Tech Mart - Tech E-commerce Application",
-      stack: "|| TypeScript | Next.js | Node.js | Tailwind.CSS",
-    },
-  ];
+const Projects = async () => {
+  // const cards = [
+  //   {
+  //     img: pr1,
+  //     title: "Travel Buddy - Travel Management Application",
+  //     stack: "|| FullStack - TypeScript | Next.js | Node.js | Framer Motion",
+  //   },
+  //   {
+  //     img: pr2,
+  //     title: "Tech Mart - Tech E-commerce Application",
+  //     stack: "|| FullStack TypeScript | Next.js | Node.js | Tailwind.CSS",
+  //   },
+  //   {
+  //     img: pr5,
+  //     title: "Tech Mart - Tech E-commerce Application",
+  //     stack: "|| TypeScript | Next.js | Node.js | Tailwind.CSS",
+  //   },
+  //   {
+  //     img: pr4,
+  //     title: "Tech Mart - Tech E-commerce Application",
+  //     stack: "|| TypeScript | Next.js | Node.js | Tailwind.CSS",
+  //   },
+  // ];
+
+  const res = await fetch(apiConfig.baseUrl + apiConfig.projects.getAll);
+  const result = await res.json();
+  const cards = result?.data as IProjects[];
+
+  // console.log(result);
 
   return (
     <div className="h-dvh flex items-center justify-center" id="projects">
@@ -46,22 +55,32 @@ const Projects = () => {
           <Fragment key={i}>
             <div className="w-full h-[348px] lg:h-[448px] relative z-50 overflow-hidden bg-[#f1f1f1] shadow-xl hover:scale-105 duration-1000 shadow-inset-black">
               <Image
-                src={card.img}
+                src={card.thumbnail}
                 alt=""
                 className="absolute z-0 opacity-50 -rotate-45 w-full h-full object-contain -top-1/2 -left-1/2 scale-200"
+                width={400}
+                height={400}
+                priority
               />
               <Image
-                src={card.img}
+                src={card.thumbnail}
                 alt=""
-                className="px-[30px] md:px-[40px] lg:px-[60px] top-[30px] md:top-[40px] lg:top-[60px] z-20 absolute"
+                className="px-[30px] md:px-[40px] lg:px-[60px] top-[30px] md:top-[40px] lg:top-[60px] z-20 absolute w-full"
+                width={400}
+                height={400}
+                priority
               />
               <div className="w-full h-full flex items-center justify-center bg-black/55 relative z-30 opacity-0 hover:opacity-100 duration-1000 group gap-6">
-                <button className="bg-white text-primary rounded cursor-pointer w-[160px] p-2">
-                  View Project
-                </button>
-                <button className="bg-white text-primary rounded cursor-pointer w-[160px] p-2">
-                  Project Details
-                </button>
+                <Link href={card.liveLink} target="_blank">
+                  <button className="bg-white text-primary rounded cursor-pointer w-[160px] p-2">
+                    View Project
+                  </button>
+                </Link>
+                <Link href={card.repoLink} target="_blank">
+                  <button className="bg-white text-primary rounded cursor-pointer w-[160px] p-2">
+                    Project Details
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="flex flex-col justify-between gap-6 mt-6 px-4">

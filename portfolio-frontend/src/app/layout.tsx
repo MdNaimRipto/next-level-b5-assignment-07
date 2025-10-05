@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { mainMeta } from "@/metadata/metadata";
+import { Toaster } from "sonner";
 
 import "../styles/globals.css";
 import "swiper/css";
 import "swiper/css/pagination";
+import AuthContext from "@/context/AuthContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,7 +27,8 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${poppins.variable} antialiased`}
       >
-        {children}
+        <Toaster />
+        <AuthContext>{children}</AuthContext>
       </body>
     </html>
   );

@@ -1,9 +1,17 @@
+import { logout } from "@/actions/auth";
+import { useUserContext } from "@/context/AuthContext";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { ReactElement } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { ReactElement, useState } from "react";
+import { toast } from "sonner";
 
 const TopHeader = ({ addButton }: { addButton: ReactElement }) => {
+  const { setUser } = useUserContext();
+  const router = useRouter();
   const pathName = usePathname();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const paths = [
     {
       link: "/dashboard/blogs",
@@ -31,10 +39,16 @@ const TopHeader = ({ addButton }: { addButton: ReactElement }) => {
       <div className="flex items-center gap-4">
         {addButton}
         <button
-          onClick={() => console.log("Logout")}
+          onClick={async () => {
+            setIsLoading(true);
+            await logout();
+            toast.success("Successfully Logged out");
+            setUser(null);
+            router.push("/");
+          }}
           className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-black/90 hover:cursor-pointer"
         >
-          Logout
+          {isLoading ? "Logging Out..." : "Logout"}
         </button>
       </div>
     </div>

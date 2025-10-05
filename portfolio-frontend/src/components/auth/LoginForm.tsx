@@ -3,6 +3,10 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { getMe, login } from "@/actions/auth";
+import { toast } from "sonner";
+import { useUserContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -10,6 +14,9 @@ const loginSchema = z.object({
 });
 
 export function LoginForm() {
+  const { setUser } = useUserContext();
+  const navigate = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -21,7 +28,24 @@ export function LoginForm() {
   });
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
-    const option = { data };
+    try {
+      setIsLoading(true);
+      const res = await login(data);
+      console.log(res);
+      if (res.success) {
+        const user = await getMe();
+        setUser(user?.data);
+        toast.success("User Logged in Successfully");
+        navigate.push("/dashboard/blogs");
+      } else {
+        toast.error("User Login Failed");
+      }
+    } catch (error) {
+      // toast.error(String(error as string));
+      console.log({ error });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
